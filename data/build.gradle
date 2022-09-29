@@ -19,6 +19,7 @@ android {
         def properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         def NETWORK_BASE_URL = properties.getProperty("network_base_url")
+        buildConfigField("String", "NETWORK_BASE_URL", "\"${NETWORK_BASE_URL}\"")
     }
 
     buildTypes {
