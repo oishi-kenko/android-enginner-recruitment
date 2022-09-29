@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface CookingRecordsNetworkApi {
     @GET("/cooking_records")
-    fun getCookingRecords(
+    suspend fun getCookingRecords(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
     ): Response<CookingRecords>
