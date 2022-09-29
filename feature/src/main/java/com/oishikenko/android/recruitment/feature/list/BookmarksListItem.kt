@@ -1,4 +1,4 @@
-package com.oishikenko.android.recruitment.feature.bookmarks
+package com.oishikenko.android.recruitment.feature.list
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
