@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface CookingRecordsRepository {
-    suspend fun getCookingRecords(offet: Int, limit: Int): Flow<Response<CookingRecords>>
+    fun getCookingRecords(offet: Int, limit: Int): Flow<Response<CookingRecords>>
 }
