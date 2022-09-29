@@ -11,16 +11,21 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oishikenko.android.recruitment.feature.R
 
-@OptIn(ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class, ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CookingRecordsScreen(
-    viewModel: CookingRecordsViewModel = CookingRecordsViewModel()
+    viewModel: CookingRecordsViewModel = hiltViewModel()
 ) {
+    val cookingRecords by viewModel.cookingRecords.collectAsStateWithLifecycle()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -36,7 +41,7 @@ fun CookingRecordsScreen(
                 .padding(innerPadding)
                 .consumedWindowInsets(innerPadding)
         ) {
-            items(viewModel.cookingRecords) {
+            items(cookingRecords) {
                 CookingRecordListItem(it)
             }
         }
