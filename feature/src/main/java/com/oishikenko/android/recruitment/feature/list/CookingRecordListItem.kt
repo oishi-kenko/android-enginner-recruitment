@@ -19,7 +19,7 @@ import coil.compose.AsyncImage
 import com.oishikenko.android.recruitment.data.model.CookingRecord
 
 @Composable
-fun BookmarkedRecipeListItem(
+fun CookingRecordListItem(
     cookingRecord: CookingRecord
 ) {
     Box(
@@ -55,8 +55,8 @@ fun BookmarkedRecipeListItem(
 
 @Preview
 @Composable
-fun PreviewBookmarkedRecipeListItem() {
-    BookmarkedRecipeListItem(
+fun PreviewCookingRecordListItem() {
+    CookingRecordListItem(
         cookingRecord = CookingRecord(
             imageUrl= "https://cooking-records.herokuapp.com/images/1.jpg",
             comment = "豚肉のコクとごぼうの香り、野菜の甘みで奥行きのある味わい。",
