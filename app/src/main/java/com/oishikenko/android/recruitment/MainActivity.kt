@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.oishikenko.android.recruitment.feature.list.CookingRecordsScreen
 import com.oishikenko.android.recruitment.ui.theme.RecruitmentTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,24 +18,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RecruitmentTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                CookingRecordsScreen()
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    RecruitmentTheme {
-        Greeting("Android")
     }
 }
