@@ -1,6 +1,6 @@
 package com.oishikenko.android.recruitment.feature.list
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oishikenko.android.recruitment.data.model.CookingRecord
 import com.oishikenko.android.recruitment.data.repository.CookingRecordsRepository

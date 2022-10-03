@@ -30,26 +30,14 @@ fun CookingRecordListItem(
                 vertical = 8.dp,
             ),
     ) {
-        Row {
-            AsyncImage(
-                model = cookingRecord.imageUrl,
-                contentDescription = cookingRecord.comment,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(96.dp)
-                    .clip(RoundedCornerShape(4.dp)),
-            )
-            Column(
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier
-                    .padding(start = 10.dp)
-                    .weight(1f, false),
-            ) {
-                Text(
-                    text = cookingRecord.comment
-                )
-            }
-        }
+        AsyncImage(
+            model = cookingRecord.imageUrl,
+            contentDescription = cookingRecord.comment,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(96.dp)
+                .clip(RoundedCornerShape(4.dp)),
+        )
     }
 }
 
@@ -58,7 +46,7 @@ fun CookingRecordListItem(
 fun PreviewCookingRecordListItem() {
     CookingRecordListItem(
         cookingRecord = CookingRecord(
-            imageUrl= "https://cooking-records.herokuapp.com/images/1.jpg",
+            imageUrl= "",
             comment = "豚肉のコクとごぼうの香り、野菜の甘みで奥行きのある味わい。",
             recipeType = "soup",
             recordedAt = "2018-05-01 17:57:31"
