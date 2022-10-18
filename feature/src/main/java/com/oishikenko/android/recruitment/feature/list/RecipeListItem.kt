@@ -15,7 +15,7 @@ import coil.compose.AsyncImage
 import com.oishikenko.android.recruitment.data.model.CookingRecord
 
 @Composable
-fun CookingRecordListItem(
+fun RecipeListItem(
     cookingRecord: CookingRecord
 ) {
     Row(
@@ -39,8 +39,8 @@ fun CookingRecordListItem(
 
 @Preview
 @Composable
-fun PreviewCookingRecordListItem() {
-    CookingRecordListItem(
+fun PreviewRecipeListItem() {
+    RecipeListItem(
         cookingRecord = CookingRecord(
             imageUrl= "",
             comment = "豚肉のコクとごぼうの香り、野菜の甘みで奥行きのある味わい。",

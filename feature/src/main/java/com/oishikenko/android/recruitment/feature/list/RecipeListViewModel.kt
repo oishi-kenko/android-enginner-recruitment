@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
 @HiltViewModel
-class CookingRecordsViewModel @Inject constructor(
+class RecipeListViewModel @Inject constructor(
     private var cookingRecordsRepository: CookingRecordsRepository
 ) : ViewModel() {
     val cookingRecords: StateFlow<List<CookingRecord>> =

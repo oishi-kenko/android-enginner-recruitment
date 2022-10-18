@@ -22,8 +22,8 @@ import com.oishikenko.android.recruitment.feature.R
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalLifecycleComposeApi::class)
 @Composable
-fun CookingRecordsScreen(
-    viewModel: CookingRecordsViewModel = hiltViewModel()
+fun RecipeListScreen(
+    viewModel: RecipeListViewModel = hiltViewModel()
 ) {
     val cookingRecords by viewModel.cookingRecords.collectAsStateWithLifecycle()
     Scaffold(
@@ -42,7 +42,7 @@ fun CookingRecordsScreen(
                 .consumedWindowInsets(innerPadding)
         ) {
             items(cookingRecords) {
-                CookingRecordListItem(it)
+                RecipeListItem(it)
             }
         }
     }
@@ -50,8 +50,8 @@ fun CookingRecordsScreen(
 
 @Preview
 @Composable
-fun PreviewCookingRecordsScreen(){
+fun PreviewRecipeListScreen(){
     MaterialTheme {
-        CookingRecordsScreen()
+        RecipeListScreen()
     }
 }
