@@ -20,6 +20,7 @@ jobs:
         run: |
           result=$(echo '${{ steps.get_label_data.outputs.data }}' | sed -z 's/\n//g')
           echo "::set-output name=value::${result}"
+
   create-issue-labels:
     needs: get-issue-labels
     runs-on: ubuntu-latest
@@ -34,6 +35,40 @@ jobs:
           name: ${{ matrix.label.name }}
           color: ${{ matrix.label.color }}
           description: ${{ matrix.label.description }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  get-milestones:
+    if: github.repository != 'oishi-kenko/android-enginner-recruitment'
+    runs-on: ubuntu-latest
+    outputs:
+      milestones: ${{ steps.output_milestones_data.outputs.value }}
+    steps:
+      - name: Getting Milestones data
+        id: get_milestones_data
+        uses: octokit/request-action@v2.1.0
+        with:
+          route: GET /repos/oishi-kenko/android-enginner-recruitment/milestones
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - id: output_milestones_data
+        run: |
+          result=$(echo '${{ steps.get_milestones_data.outputs.data }}' | sed -z 's/\n//g')
+          echo "::set-output name=value::${result}"
+
+  create-milestones:
+    needs: get-milestones
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        milestone: ${{ fromJson(needs.get-milestones.outputs.milestones) }}
+    steps:
+      - name: Create a milestone
+        uses: octokit/request-action@v2.1.0
+        with:
+          route: POST /repos/${{ github.repository }}/milestones
+          title: ${{ matrix.milestone.title }}
+          description: ${{ matrix.milestone.description }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -54,8 +89,9 @@ jobs:
         run: |
           result=$(echo '${{ steps.get_milestones_data.outputs.data }}' | sed -z 's/\n/%0A/g' | sed -z 's/\r/%0D/g')
           echo "::set-output name=value::${result}"
+
   get-issues:
-    if: github.repository != 'oishi-kenko/android-enginner-recruitment/'
+    if: github.repository != 'oishi-kenko/android-enginner-recruitment'
     runs-on: ubuntu-latest
     outputs:
       issues: ${{ steps.output_issues_data.outputs.value }}
@@ -120,12 +156,15 @@ jobs:
           if [[ "$body" =~ '#'[0-9] ]]; then
               link=$(echo "$body" | grep -o "#[0-9]")
               num=$(echo $link | tr -d '#')
+          
               issues=$(echo '${{ needs.get-issues.outputs.issues }}' | jq '[ . as $d | keys[] | $d[.] + {index:.} ]')
               issue_index=$(echo "$issues" | jq ".[] | select (.number==${num}) | .index")
               my_issue_count=$(echo '${{ needs.get-myrepo-issues.outputs.issues }}' | jq '. | length')
+          
               num=$(($issue_index+$my_issue_count+1))
               body=$(echo $body | sed "s/$link/#${num}/g")
           fi
+          
           labels='${{ toJson(matrix.issue.labels.*.name) }}'
           curl -X POST -H "Accept: application/vnd.github.v3+json" \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
