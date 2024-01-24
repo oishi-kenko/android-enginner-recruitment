@@ -110,7 +110,7 @@ Issueにはラベルを付与していますので、難易度の目安にお役
 
 
 課題 Issueをご自身のリポジトリーにコピーするGitHub Actionsをご用意しております。
-[こちらのWorkflow](./.github/workflows/copy-issues.yml)を[手動でトリガー](https://docs.github.com/ja/actions/managing-workflow-runs/manually-running-a-workflow)することでコピーできますのでご活用下さい。
+[こちらのWorkflow](./.github/workflows/copy-issues.yml)を[手動でトリガー](https://docs.github.com/ja/actions/managing-workflow-runs/manually-running-a-workflow)することでコピーできますのでご活用下さい。[こちらのページ](https://github.com/oishi-kenko/android-enginner-recruitment/blob/main/COPY-ISSUES_HELP.md)をご参考にしてください。
 
 # 課題の提出方法
 
